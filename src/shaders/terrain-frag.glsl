@@ -75,7 +75,7 @@ vec3 normalize_rgb(float r, float g, float b) {
 vec3 biome(float e, float m, vec3 color, vec2 seed) {
   // Color Biomes to Use
   // vec3 DEEP_SEA = normalize_rgb(43.0, 56.0, 103.0);
-  vec3 DEEP_SEA = mix(normalize_rgb(175.0, 199.0, 227.0), normalize_rgb(1.0,1.0,5.0), 0.15);
+  vec3 DEEP_SEA = mix(normalize_rgb(175.0, 199.0, 227.0), normalize_rgb(1.0,1.0,5.0), 0.3);
   // vec3 OCEAN = normalize_rgb(66.0, 68.0, 118.0);
   vec3 OCEAN = normalize_rgb(156.0, 186.0, 222.0);
   vec3 BEACH = normalize_rgb(158.0,145.0,122.0);
@@ -83,11 +83,12 @@ vec3 biome(float e, float m, vec3 color, vec2 seed) {
   vec3 BARE = normalize_rgb(136.0,136.0,136.0);
   vec3 TUNDRA = normalize_rgb(188.0,188.0,173.0);
   vec3 SNOW = normalize_rgb(222.0, 222.0, 228.0);
-  vec3 DESERT = normalize_rgb(203.0, 209.0, 161.0);
+  // vec3 DESERT = normalize_rgb(203.0, 209.0, 161.0);
+  vec3 DESERT = normalize_rgb(216.0, 191.0, 216.0);
   // vec3 SHRUBLAND = normalize_rgb(139.0, 152.0, 122.0);
-  vec3 SHRUBLAND = normalize_rgb(155.0, 111.0, 146.0);
+  vec3 SHRUBLAND = normalize_rgb(155.0, 0.0, 146.0);
   // vec3 TAIGA = normalize_rgb(156.0, 168.0, 124.0);
-  vec3 TAIGA = normalize_rgb(156.0, 168.0, 124.0);
+  vec3 TAIGA = normalize_rgb(123.0, 104.0, 238.0);
   // vec3 GRASSLAND = normalize_rgb(143.0, 169.0, 96.0);
   vec3 GRASSLAND = normalize_rgb(67.0, 34.0, 64.0);
   // vec3 DECIDUOUS_FOREST = normalize_rgb(113.0, 145.0, 95.0);
@@ -95,15 +96,13 @@ vec3 biome(float e, float m, vec3 color, vec2 seed) {
   // vec3 RAIN_FOREST = normalize_rgb(84.0, 134.0, 90.0);
   vec3 RAIN_FOREST = normalize_rgb(114.0, 69.0, 106.0);
   // vec3 SUBTROPICAL_DESERT = normalize_rgb(206.0, 185.0, 145.0);
-  vec3 SUBTROPICAL_DESERT = normalize_rgb(206.0, 185.0, 145.0);
+  vec3 SUBTROPICAL_DESERT = normalize_rgb(255.0, 0.0, 255.0);
   // vec3 TROPICAL_FOREST = normalize_rgb(102.0, 150.0, 79.0);
-  vec3 TROPICAL_FOREST = normalize_rgb(102.0, 150.0, 79.0);
+  vec3 TROPICAL_FOREST = normalize_rgb(139.0, 0.0, 139.0);
   // vec3 TROPICAL_RAIN_FOREST = normalize_rgb(69.0, 117.0, 88.0);
-  vec3 TROPICAL_RAIN_FOREST = normalize_rgb(69.0, 117.0, 88.0);
+  vec3 TROPICAL_RAIN_FOREST = normalize_rgb(75.0, 255.0, 130.0);
 
-  float frac_rand = fract(fbm(e, m, seed) * m * pow(e, 0.5) * 43.45678);
-  // float frac_rand = 0.5;
-  // float frac_rand = fract(fbm(e, m, seed));
+  float frac_rand = fract(fbm(m, e, seed) * m * pow(e, 0.5) * 43.45678 + smoothstep(0.4,0.6,e));
 
   // Color Biome Logic
   if (e <= ocean_floor * 0.70) return DEEP_SEA;
@@ -179,7 +178,7 @@ void main() {
         out_Col.rgb * lightIntensity,
         vec3(164.0 / 255.0, 233.0 / 255.0, 1.0),
         fog)),
-      0.85), out_Col.a);
+      0.8), out_Col.a);
 //  out_Col = vec4(out_Col.rgb, out_Col.a);
 
 }
