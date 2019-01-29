@@ -87,7 +87,7 @@ void main() {
   // generate procedurally generated stars!
   float color = 0.0;
   highp float starValue = rando(fs_Pos.xy);
-  float prob = 0.5;
+  float prob = 0.8;
   float size = 15.0;
   if (starValue > prob) {
     vec2 center = size * fs_Pos.xy + vec2(size, size) * 0.5;
