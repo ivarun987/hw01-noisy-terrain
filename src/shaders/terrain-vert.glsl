@@ -90,8 +90,9 @@ void main()
   //float fs_Sine = (cos((vs_Pos.x + u_PlanePos.x) * 3.14159 * 0.1) + cos((vs_Pos.z + u_PlanePos.y) * 3.14159 * 0.1));
   //elevation = float(round(elevation * 12.5)) / 12.5;
 
-  float exp = 6.0;
+  float exp = 5.0;
   elevation = pow(elevation, exp);
+  // elevation = smoothstep(0.4,0.6,elevation);
 
 //  if (elevation < ocean_floor) {
 //    elevation = ocean_floor;
