@@ -103,6 +103,8 @@ vec3 biome(float e, float m, vec3 color, vec2 seed) {
   vec3 TROPICAL_RAIN_FOREST = normalize_rgb(75.0, 255.0, 130.0);
 
   float frac_rand = fract(fbm(m, e, seed) * m * pow(e, 0.5) * 43.45678 + smoothstep(0.4,0.6,e));
+  // frac_rand = elevation / 10.0;
+  // frac_rand = elevation * moisture / 1.2;
 
   // Color Biome Logic
   if (e <= ocean_floor * 0.70) return DEEP_SEA;
